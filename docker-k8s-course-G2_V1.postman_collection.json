@@ -1,0 +1,781 @@
+{
+  "info": {
+    "_postman_id": "dc355554-357b-494d-b691-e1e815df9ae4",
+    "name": "docker-k8s-course-G2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "14488161"
+  },
+  "item": [
+    {
+      "name": "UsersApi",
+      "item": [
+        {
+          "name": "Get usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6001/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Usuarios ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6001/api/users/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Jossie Castrillo\",\r\n  \"correo\": \"jossie@example.com\",\r\n  \"edad\": 30,\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6001/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Usuario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Jossie Bismarck\",\r\n  \"correo\": \"jossie.bismarck@example.com\",\r\n  \"edad\": 31,\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6001/api/users/16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "api",
+                "users",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6001/api/users/16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "api",
+                "users",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6001/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6001/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6001",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "BooksApi",
+      "item": [
+        {
+          "name": "Obtener Libros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6002/api/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "api",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Libro ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6002/api/books/16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "api",
+                "books",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6002/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6002/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Libro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Libro de prueba\",\r\n  \"genero\": \"Tecnología\",\r\n  \"autores\": [\"Autor Prueba\"],\r\n  \"isbn\": \"9780000000000\",\r\n  \"edicion\": \"1ra\",\r\n  \"editorial\": \"Editorial Test\",\r\n  \"lugarDePublicacion\": \"Guatemala\",\r\n  \"noPaginas\": 200,\r\n  \"resumen\": \"Libro utilizado para pruebas.\",\r\n  \"precio\": 20.00,\r\n  \"disponibleReserva\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6002/api/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "api",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Libro",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Libro de prueba actualizado\",\r\n  \"genero\": \"Tecnología\",\r\n  \"autores\": [\"Autor Actualizado\"],\r\n  \"isbn\": \"9780000000001\",\r\n  \"edicion\": \"2da\",\r\n  \"editorial\": \"Editorial Actualizada\",\r\n  \"lugarDePublicacion\": \"Guatemala\",\r\n  \"noPaginas\": 250,\r\n  \"resumen\": \"Libro actualizado para pruebas.\",\r\n  \"precio\": 25.00,\r\n  \"disponibleReserva\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6002/api/books/16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "api",
+                "books",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Libro",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6002/api/books/16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6002",
+              "path": [
+                "api",
+                "books",
+                "16"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "EventsApi",
+      "item": [
+        {
+          "name": "Obtener Eventos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6003/api/events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6003",
+              "path": [
+                "api",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Evento ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6003/api/events/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6003",
+              "path": [
+                "api",
+                "events",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Evento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombreEvento\": \"Nuevo evento literario\",\r\n  \"fechaHora\": \"2026-08-15T18:00:00\",\r\n  \"descripcion\": \"Evento creado mediante la API.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6003/api/events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6003",
+              "path": [
+                "api",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6003/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6003",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6003/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6003",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ReviewsApi",
+      "item": [
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6004/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6004",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6004/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6004",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Reviews ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6004/api/reviews/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6004",
+              "path": [
+                "api",
+                "reviews",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6004/api/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6004",
+              "path": [
+                "api",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Review",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tituloLibro\": \"Cien años de soledad 2\",\r\n  \"nombreUsuario\": \"Juan Pérez\",\r\n  \"calificacion\": 5,\r\n  \"comentario\": \"Excelente libro.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6004/api/reviews",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6004",
+              "path": [
+                "api",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ReservationReturnApi",
+      "item": [
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6005/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6005",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6005/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6005",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Reserva",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6005/api/reservations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6005",
+              "path": [
+                "api",
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Reserva",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tituloLibro\": \"Cien años de soledad\",\r\n  \"nombreUsuario\": \"Juan Pérez\",\r\n  \"fechaReserva\": \"2026-09-21T20:00:00\",\r\n  \"fechaDevolucion\": \"2026-09-25T20:00:00\",\r\n  \"diasReservados\": 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6005/api/reservations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6005",
+              "path": [
+                "api",
+                "reservations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "OrdersApi",
+      "item": [
+        {
+          "name": "Live",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6006/health/live",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6006",
+              "path": [
+                "health",
+                "live"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ready",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6006/health/ready",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6006",
+              "path": [
+                "health",
+                "ready"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6006/api/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6006",
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Order ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6006/api/orders/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6006",
+              "path": [
+                "api",
+                "orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tituloLibro\": \"Cien años de soledad\",\r\n  \"nombreUsuario\": \"Juan Pérez\",\r\n  \"precio\": 125.50,\r\n  \"fechaHoraCompra\": \"2026-09-21T20:00:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6006/api/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6006",
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
