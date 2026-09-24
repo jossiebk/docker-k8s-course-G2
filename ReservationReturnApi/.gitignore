@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.userossc
+*.suo
+
+# Visual Studio Code and JetBrains
+.vscode/
+.idea/
+
+# Test results and packages
+TestResults/
+*.nupkg
+*.snupkg
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db

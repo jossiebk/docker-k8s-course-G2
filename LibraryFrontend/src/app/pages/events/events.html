@@ -1,0 +1,214 @@
+<section class="events-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Eventos</h1>
+      <p>Administra los eventos de la Biblioteca Virtual.</p>
+    </div>
+  </div>
+
+  @if (message) {
+    <div class="message success">
+      {{ message }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="message error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <section class="search-section">
+
+    <div class="section-header">
+      <h2>Buscar evento</h2>
+    </div>
+
+    <div class="search-form">
+
+      <input
+        type="number"
+        placeholder="ID del evento"
+        [(ngModel)]="searchId"
+        (keyup.enter)="searchEvent()">
+
+      <button
+        class="primary-button"
+        (click)="searchEvent()">
+        Buscar
+      </button>
+
+      <button
+        class="secondary-button"
+        (click)="showAllEvents()">
+        Mostrar todos
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="form-section">
+
+    <div class="section-header">
+      <h2>
+        {{ editingEventId === null ? 'Crear evento' : 'Editar evento' }}
+      </h2>
+    </div>
+
+    <form (ngSubmit)="submitForm()">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+
+          <label for="nombreEvento">
+            Nombre del evento
+          </label>
+
+          <input
+            id="nombreEvento"
+            type="text"
+            name="nombreEvento"
+            [(ngModel)]="formEvent.nombreEvento"
+            placeholder="Nombre del evento">
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="fechaHora">
+            Fecha y hora
+          </label>
+
+          <input
+            id="fechaHora"
+            type="datetime-local"
+            name="fechaHora"
+            [(ngModel)]="formEvent.fechaHora">
+
+        </div>
+
+        <div class="form-group full-width">
+
+          <label for="descripcion">
+            Descripción
+          </label>
+
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            [(ngModel)]="formEvent.descripcion"
+            rows="4"
+            placeholder="Descripción del evento">
+          </textarea>
+
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="primary-button">
+          {{ editingEventId === null ? 'Crear evento' : 'Actualizar evento' }}
+        </button>
+
+        @if (editingEventId !== null) {
+
+          <button
+            type="button"
+            class="secondary-button"
+            (click)="cancelEdit()">
+            Cancelar
+          </button>
+
+        }
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <section class="table-section">
+
+    <div class="section-header">
+
+      <h2>Listado de eventos</h2>
+
+      <span class="record-count">
+        {{ events.length }} registros
+      </span>
+
+    </div>
+
+    @if (events.length > 0) {
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Evento</th>
+              <th>Fecha y hora</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (event of events; track event.id) {
+
+              <tr>
+
+                <td>{{ event.id }}</td>
+
+                <td>{{ event.nombreEvento }}</td>
+
+                <td>{{ event.fechaHora }}</td>
+
+                <td>{{ event.descripcion }}</td>
+
+                <td class="actions">
+
+                  <button
+                    class="edit-button"
+                    (click)="editEvent(event)">
+                    Editar
+                  </button>
+
+                  <button
+                    class="delete-button"
+                    (click)="deleteEvent(event)">
+                    Eliminar
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        No hay eventos para mostrar.
+      </div>
+
+    }
+
+  </section>
+
+</section>

@@ -1,0 +1,285 @@
+<section class="books-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Libros</h1>
+      <p>Administra el catálogo de libros de la Biblioteca Virtual.</p>
+    </div>
+  </div>
+
+  @if (message) {
+    <div class="message success">
+      {{ message }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="message error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <section class="search-section">
+
+    <div class="section-header">
+      <h2>Buscar libro</h2>
+    </div>
+
+    <div class="search-form">
+      <input
+        type="number"
+        placeholder="ID del libro"
+        [(ngModel)]="searchId"
+        (keyup.enter)="searchBook()">
+
+      <button class="primary-button" (click)="searchBook()">
+        Buscar
+      </button>
+
+      <button class="secondary-button" (click)="showAllBooks()">
+        Mostrar todos
+      </button>
+    </div>
+
+  </section>
+
+  <section class="form-section">
+
+    <div class="section-header">
+      <h2>
+        {{ editingBookId === null ? 'Crear libro' : 'Editar libro' }}
+      </h2>
+    </div>
+
+    <form (ngSubmit)="submitForm()">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input
+            id="titulo"
+            type="text"
+            name="titulo"
+            [(ngModel)]="formBook.titulo"
+            placeholder="Título del libro">
+        </div>
+
+        <div class="form-group">
+          <label for="genero">Género</label>
+          <input
+            id="genero"
+            type="text"
+            name="genero"
+            [(ngModel)]="formBook.genero"
+            placeholder="Género">
+        </div>
+
+        <div class="form-group">
+          <label for="autores">Autores</label>
+          <input
+            id="autores"
+            type="text"
+            name="autores"
+            [(ngModel)]="formBook.autores"
+            placeholder="Autor o autores">
+        </div>
+
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input
+            id="isbn"
+            type="text"
+            name="isbn"
+            [(ngModel)]="formBook.isbn"
+            placeholder="ISBN">
+        </div>
+
+        <div class="form-group">
+          <label for="edicion">Edición</label>
+          <input
+            id="edicion"
+            type="text"
+            name="edicion"
+            [(ngModel)]="formBook.edicion"
+            placeholder="Edición">
+        </div>
+
+        <div class="form-group">
+          <label for="editorial">Editorial</label>
+          <input
+            id="editorial"
+            type="text"
+            name="editorial"
+            [(ngModel)]="formBook.editorial"
+            placeholder="Editorial">
+        </div>
+
+        <div class="form-group">
+          <label for="lugarDePublicacion">Lugar de publicación</label>
+          <input
+            id="lugarDePublicacion"
+            type="text"
+            name="lugarDePublicacion"
+            [(ngModel)]="formBook.lugarDePublicacion"
+            placeholder="Lugar de publicación">
+        </div>
+
+        <div class="form-group">
+          <label for="noPaginas">Número de páginas</label>
+          <input
+            id="noPaginas"
+            type="number"
+            name="noPaginas"
+            [(ngModel)]="formBook.noPaginas"
+            min="1">
+        </div>
+
+        <div class="form-group">
+          <label for="precio">Precio</label>
+          <input
+            id="precio"
+            type="number"
+            name="precio"
+            [(ngModel)]="formBook.precio"
+            min="0"
+            step="0.01">
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label>
+            <input
+              type="checkbox"
+              name="disponibleReserva"
+              [(ngModel)]="formBook.disponibleReserva">
+
+            Disponible para reserva
+          </label>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="resumen">Resumen</label>
+          <textarea
+            id="resumen"
+            name="resumen"
+            [(ngModel)]="formBook.resumen"
+            rows="4"
+            placeholder="Resumen del libro">
+          </textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button type="submit" class="primary-button">
+          {{ editingBookId === null ? 'Crear libro' : 'Actualizar libro' }}
+        </button>
+
+        @if (editingBookId !== null) {
+          <button
+            type="button"
+            class="secondary-button"
+            (click)="cancelEdit()">
+            Cancelar
+          </button>
+        }
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <section class="table-section">
+
+    <div class="section-header">
+      <h2>Catálogo de libros</h2>
+
+      <span class="record-count">
+        {{ books.length }} registros
+      </span>
+    </div>
+
+    @if (books.length > 0) {
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Género</th>
+              <th>Autores</th>
+              <th>ISBN</th>
+              <th>Editorial</th>
+              <th>Páginas</th>
+              <th>Precio</th>
+              <th>Reserva</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (book of books; track book.id) {
+
+              <tr>
+
+                <td>{{ book.id }}</td>
+                <td>{{ book.titulo }}</td>
+                <td>{{ book.genero }}</td>
+                <td>{{ book.autores }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.editorial }}</td>
+                <td>{{ book.noPaginas }}</td>
+                <td>Q {{ book.precio | number:'1.2-2' }}</td>
+
+                <td>
+                  <span
+                    class="status"
+                    [class.active-status]="book.disponibleReserva"
+                    [class.inactive-status]="!book.disponibleReserva">
+                    {{ book.disponibleReserva ? 'Disponible' : 'No disponible' }}
+                  </span>
+                </td>
+
+                <td class="actions">
+
+                  <button
+                    class="edit-button"
+                    (click)="editBook(book)">
+                    Editar
+                  </button>
+
+                  <button
+                    class="delete-button"
+                    (click)="deleteBook(book)">
+                    Eliminar
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        No hay libros para mostrar.
+      </div>
+
+    }
+
+  </section>
+
+</section>

@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">Biblioteca Virtual</a>
+  </div>
+
+  <div class="navbar-links">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Inicio
+    </a>
+
+    <a routerLink="/users" routerLinkActive="active">
+      Usuarios
+    </a>
+
+    <a routerLink="/books" routerLinkActive="active">
+      Libros
+    </a>
+
+    <a routerLink="/events" routerLinkActive="active">
+      Eventos
+    </a>
+
+    <a routerLink="/reviews" routerLinkActive="active">
+      Reseñas
+    </a>
+
+    <a routerLink="/reservations" routerLinkActive="active">
+      Reservaciones
+    </a>
+
+    <a routerLink="/orders" routerLinkActive="active">
+      Órdenes
+    </a>
+  </div>
+</nav>

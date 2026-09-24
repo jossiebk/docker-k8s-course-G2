@@ -1,0 +1,158 @@
+<section class="page-container">
+
+  <div class="page-header">
+    <div>
+      <h1>Reseñas</h1>
+      <p>Consulta y registra reseñas de los libros.</p>
+    </div>
+
+    <button class="btn-primary" (click)="toggleForm()">
+      {{ showForm ? 'Cancelar' : 'Nueva reseña' }}
+    </button>
+  </div>
+
+  @if (showForm) {
+    <div class="form-card">
+
+      <h2>Nueva reseña</h2>
+
+      <form (ngSubmit)="createReview()">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="tituloLibro">Título del libro</label>
+            <input
+              id="tituloLibro"
+              type="text"
+              name="tituloLibro"
+              [(ngModel)]="newReview.tituloLibro"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreUsuario">Nombre del usuario</label>
+            <input
+              id="nombreUsuario"
+              type="text"
+              name="nombreUsuario"
+              [(ngModel)]="newReview.nombreUsuario"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="calificacion">Calificación</label>
+            <select
+              id="calificacion"
+              name="calificacion"
+              [(ngModel)]="newReview.calificacion">
+
+              <option [ngValue]="1">1 - ★</option>
+              <option [ngValue]="2">2 - ★★</option>
+              <option [ngValue]="3">3 - ★★★</option>
+              <option [ngValue]="4">4 - ★★★★</option>
+              <option [ngValue]="5">5 - ★★★★★</option>
+
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="comentario">Comentario</label>
+            <textarea
+              id="comentario"
+              name="comentario"
+              rows="4"
+              [(ngModel)]="newReview.comentario"
+              required>
+            </textarea>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            Guardar reseña
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  }
+
+  <div class="search-card">
+
+    <div class="search-group">
+      <label for="searchId">Buscar por ID</label>
+
+      <div class="search-controls">
+        <input
+          id="searchId"
+          type="number"
+          placeholder="ID de la reseña"
+          [(ngModel)]="searchId"
+          name="searchId"
+          (keyup.enter)="search()">
+
+        <button class="btn-secondary" (click)="search()">
+          Buscar
+        </button>
+
+        <button class="btn-secondary" (click)="clearSearch()">
+          Mostrar todas
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="table-card">
+
+    <div class="table-header">
+      <h2>Listado de reseñas</h2>
+      <span>{{ filteredReviews.length }} reseñas</span>
+    </div>
+
+    @if (filteredReviews.length > 0) {
+
+      <div class="table-container">
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Libro</th>
+              <th>Usuario</th>
+              <th>Calificación</th>
+              <th>Comentario</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (review of filteredReviews; track review.id) {
+              <tr>
+                <td>{{ review.id }}</td>
+                <td>{{ review.tituloLibro }}</td>
+                <td>{{ review.nombreUsuario }}</td>
+                <td class="rating">
+                  {{ '★'.repeat(review.calificacion) }}
+                </td>
+                <td>{{ review.comentario }}</td>
+              </tr>
+            }
+          </tbody>
+
+        </table>
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        <p>No se encontraron reseñas.</p>
+      </div>
+
+    }
+
+  </div>
+
+</section>

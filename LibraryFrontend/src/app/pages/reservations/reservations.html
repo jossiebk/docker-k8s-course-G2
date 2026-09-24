@@ -1,0 +1,167 @@
+<section class="page-container">
+
+  <div class="page-header">
+    <div>
+      <h1>Reservas y devoluciones</h1>
+      <p>Consulta y registra reservas de libros.</p>
+    </div>
+
+    <button class="btn-primary" (click)="toggleForm()">
+      {{ showForm ? 'Cancelar' : 'Nueva reserva' }}
+    </button>
+  </div>
+
+  @if (showForm) {
+    <div class="form-card">
+
+      <h2>Nueva reserva</h2>
+
+      <form (ngSubmit)="createReservation()">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="tituloLibro">Título del libro</label>
+            <input
+              id="tituloLibro"
+              type="text"
+              name="tituloLibro"
+              [(ngModel)]="newReservation.tituloLibro"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreUsuario">Nombre del usuario</label>
+            <input
+              id="nombreUsuario"
+              type="text"
+              name="nombreUsuario"
+              [(ngModel)]="newReservation.nombreUsuario"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaReserva">Fecha de reserva</label>
+            <input
+              id="fechaReserva"
+              type="datetime-local"
+              name="fechaReserva"
+              [(ngModel)]="newReservation.fechaReserva"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaDevolucion">Fecha de devolución</label>
+            <input
+              id="fechaDevolucion"
+              type="datetime-local"
+              name="fechaDevolucion"
+              [(ngModel)]="newReservation.fechaDevolucion">
+          </div>
+
+          <div class="form-group">
+            <label for="diasReservados">Días reservados</label>
+            <input
+              id="diasReservados"
+              type="number"
+              name="diasReservados"
+              min="1"
+              [(ngModel)]="newReservation.diasReservados"
+              required>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            Guardar reserva
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  }
+
+  <div class="search-card">
+
+    <div class="search-group">
+      <label for="searchId">Buscar por ID</label>
+
+      <div class="search-controls">
+        <input
+          id="searchId"
+          type="number"
+          placeholder="ID de la reserva"
+          [(ngModel)]="searchId"
+          name="searchId"
+          (keyup.enter)="search()">
+
+        <button class="btn-secondary" (click)="search()">
+          Buscar
+        </button>
+
+        <button class="btn-secondary" (click)="clearSearch()">
+          Mostrar todas
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="table-card">
+
+    <div class="table-header">
+      <h2>Listado de reservas</h2>
+      <span>{{ filteredReservations.length }} reservas</span>
+    </div>
+
+    @if (filteredReservations.length > 0) {
+
+      <div class="table-container">
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Libro</th>
+              <th>Usuario</th>
+              <th>Fecha reserva</th>
+              <th>Fecha devolución</th>
+              <th>Días reservados</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (reservation of filteredReservations; track reservation.id) {
+              <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.tituloLibro }}</td>
+                <td>{{ reservation.nombreUsuario }}</td>
+                <td>{{ reservation.fechaReserva | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>
+                  @if (reservation.fechaDevolucion) {
+                    {{ reservation.fechaDevolucion | date:'dd/MM/yyyy HH:mm' }}
+                  } @else {
+                    <span class="pending">Pendiente</span>
+                  }
+                </td>
+                <td>{{ reservation.diasReservados }}</td>
+              </tr>
+            }
+          </tbody>
+
+        </table>
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        <p>No se encontraron reservas.</p>
+      </div>
+
+    }
+
+  </div>
+
+</section>

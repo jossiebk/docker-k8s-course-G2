@@ -1,0 +1,211 @@
+<section class="users-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Usuarios</h1>
+      <p>Administra los usuarios de la Biblioteca Virtual.</p>
+    </div>
+  </div>
+
+  @if (message) {
+    <div class="message success">
+      {{ message }}
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="message error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <section class="search-section">
+
+    <div class="section-header">
+      <h2>Buscar usuario</h2>
+    </div>
+
+    <div class="search-form">
+      <input
+        type="number"
+        placeholder="ID del usuario"
+        [(ngModel)]="searchId"
+        (keyup.enter)="searchUser()">
+
+      <button class="primary-button" (click)="searchUser()">
+        Buscar
+      </button>
+
+      <button class="secondary-button" (click)="showAllUsers()">
+        Mostrar todos
+      </button>
+    </div>
+
+  </section>
+
+  <section class="form-section">
+
+    <div class="section-header">
+      <h2>
+        {{ editingUserId === null ? 'Crear usuario' : 'Editar usuario' }}
+      </h2>
+    </div>
+
+    <form (ngSubmit)="submitForm()">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+
+          <input
+            id="nombre"
+            type="text"
+            name="nombre"
+            [(ngModel)]="formUser.nombre"
+            placeholder="Nombre completo">
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo</label>
+
+          <input
+            id="correo"
+            type="email"
+            name="correo"
+            [(ngModel)]="formUser.correo"
+            placeholder="correo@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="edad">Edad</label>
+
+          <input
+            id="edad"
+            type="number"
+            name="edad"
+            [(ngModel)]="formUser.edad"
+            min="1">
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label>
+            <input
+              type="checkbox"
+              name="estado"
+              [(ngModel)]="formUser.estado">
+
+            Usuario activo
+          </label>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button type="submit" class="primary-button">
+          {{ editingUserId === null ? 'Crear usuario' : 'Actualizar usuario' }}
+        </button>
+
+        @if (editingUserId !== null) {
+          <button
+            type="button"
+            class="secondary-button"
+            (click)="cancelEdit()">
+            Cancelar
+          </button>
+        }
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <section class="table-section">
+
+    <div class="section-header">
+      <h2>Listado de usuarios</h2>
+
+      <span class="record-count">
+        {{ users.length }} registros
+      </span>
+    </div>
+
+    @if (users.length > 0) {
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Edad</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            @for (user of users; track user.id) {
+
+              <tr>
+
+                <td>{{ user.id }}</td>
+
+                <td>{{ user.nombre }}</td>
+
+                <td>{{ user.correo }}</td>
+
+                <td>{{ user.edad }}</td>
+
+                <td>
+                  <span
+                    class="status"
+                    [class.active-status]="user.estado"
+                    [class.inactive-status]="!user.estado">
+                    {{ user.estado ? 'Activo' : 'Inactivo' }}
+                  </span>
+                </td>
+
+                <td class="actions">
+
+                  <button
+                    class="edit-button"
+                    (click)="editUser(user)">
+                    Editar
+                  </button>
+
+                  <button
+                    class="delete-button"
+                    (click)="deleteUser(user)">
+                    Eliminar
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    } @else {
+
+      <div class="empty-state">
+        No hay usuarios para mostrar.
+      </div>
+
+    }
+
+  </section>
+
+</section>
